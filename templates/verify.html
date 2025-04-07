@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Verification</h1>
+    <form id="verificationForm">
+        <label for="membership_id">Membership ID:</label>
+        <input type="text" id="membership_id" name="membership_id" required>
+
+        <label for="webcam_image">Upload Webcam Image:</label>
+        <input type="file" id="webcam_image" name="webcam_image" accept="image/*" required>
+
+        <button type="submit">Verify</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        document.getElementById('verificationForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const membershipId = document.getElementById('membership_id').value;
+            const webcamImage = document.getElementById('webcam_image').files[0];
+
+            const formData = new FormData();
+            formData.append('membership_id', membershipId);
+            formData.append('webcam_image', webcamImage);
+
+            try {
+                const response = await fetch('/api/compare', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                document.getElementById('result').innerHTML = `
+                    <h2>Verification Result</h2>
+                    <p><strong>Match:</strong> ${result.match_summary.is_match ? 'Yes' : 'No'}</p>
+                    <p><strong>Similarity Score:</strong> ${result.match_summary.similarity_score.toFixed(4)}</p>
+                    <p><strong>Confidence:</strong> ${result.match_summary.confidence.toFixed(4)}</p>
+        
+                `;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <h2>Error</h2>
+                    <p>${error.message}</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

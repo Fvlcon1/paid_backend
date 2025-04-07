@@ -1,0 +1,1 @@
+Run failed with error: LastError(code='rate_limit_exceeded', message='Rate limit reached for gpt-4o in organization org-GbLaIfAcqeDhFUqqxwZeLda3 on tokens per min (TPM): Limit 30000, Used 14829, Requested 17199. Please try again in 4.055s. Visit https://platform.openai.com/account/rate-limits to learn more.')

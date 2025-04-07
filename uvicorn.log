@@ -1,0 +1,914 @@
+nohup: ignoring input
+INFO:     Will watch for changes in these directories: ['/workspace/nhis']
+INFO:     Uvicorn running on http://0.0.0.0:4000 (Press CTRL+C to quit)
+INFO:     Started reloader process [122567] using StatReload
+/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py:118: UserWarning: Specified provider 'CUDAExecutionProvider' is not in available provider names.Available providers: 'AzureExecutionProvider, CPUExecutionProvider'
+  warnings.warn(
+INFO:     Started server process [122569]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: /root/.insightface/models/buffalo_l/1k3d68.onnx landmark_3d_68 ['None', 3, 192, 192] 0.0 1.0
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: /root/.insightface/models/buffalo_l/2d106det.onnx landmark_2d_106 ['None', 3, 192, 192] 0.0 1.0
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: /root/.insightface/models/buffalo_l/det_10g.onnx detection [1, 3, '?', '?'] 127.5 128.0
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: /root/.insightface/models/buffalo_l/genderage.onnx genderage ['None', 3, 96, 96] 0.0 1.0
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: /root/.insightface/models/buffalo_l/w600k_r50.onnx recognition ['None', 3, 112, 112] 127.5 127.5
+set det-size: (640, 640)
+INFO:     100.64.0.27:39116 - "OPTIONS /login HTTP/1.1" 200 OK
+ERROR:api:Error during login: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+
+[SQL: SELECT users.id AS users_id, users.hospital_name AS users_hospital_name, users.email AS users_email, users.password AS users_password, users.location AS users_location, users.totp_secret AS users_totp_secret, users.backup_codes AS users_backup_codes, users.is_2fa_enabled AS users_is_2fa_enabled, users.is_email_2fa_enabled AS users_is_email_2fa_enabled 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'blvcksaphhire@gmail.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     100.64.0.27:39116 - "POST /login HTTP/1.1" 500 Internal Server Error
+INFO:api:Generated short-lived token for 2FA: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsdmNrc2FwaGhpcmVAZ21haWwuY29tIiwiaXNfMmZhIjp0cnVlLCJleHAiOjE3NDI0MDQ2MzZ9.udCR4kWdYagAvhjVdMFMRBpoiE-ZPNOJtflmVaINNas
+INFO:     100.64.0.26:57980 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57980 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57980 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57980 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:sendd:Email sent successfully: {'id': '465fbaf7-2536-4f06-9716-f3db0b46298f'}
+INFO:     100.64.0.26:57980 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33128 - "OPTIONS /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33128 - "POST /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33128 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33128 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33136 - "OPTIONS /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33144 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33128 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33136 - "GET /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.25:35810 - "OPTIONS /autocomplete/memberships?query=n HTTP/1.1" 200 OK
+INFO:     100.64.0.25:35812 - "OPTIONS /autocomplete/memberships?query=ne HTTP/1.1" 200 OK
+INFO:     100.64.0.25:35810 - "GET /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.25:45294 - "OPTIONS /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:api:Verification initialized for member: GH006, token: 77e514d3-168c-4f0d-867c-9b6fe15a9e6f
+INFO:     100.64.0.25:45294 - "POST /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:     100.64.0.27:33028 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:33028 - "OPTIONS /api/encounter/77e514d3-168c-4f0d-867c-9b6fe15a9e6f HTTP/1.1" 200 OK
+INFO:     100.64.0.27:33028 - "GET /api/encounter/77e514d3-168c-4f0d-867c-9b6fe15a9e6f HTTP/1.1" 200 OK
+INFO:     100.64.0.27:33028 - "OPTIONS /api/encounter/members/77e514d3-168c-4f0d-867c-9b6fe15a9e6f HTTP/1.1" 200 OK
+INFO:     100.64.0.27:33028 - "GET /api/encounter/members/77e514d3-168c-4f0d-867c-9b6fe15a9e6f HTTP/1.1" 200 OK
+INFO:     100.64.0.25:58286 - "OPTIONS /login HTTP/1.1" 200 OK
+INFO:api:Generated short-lived token for 2FA: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsdmNrc2FwaGhpcmVAZ21haWwuY29tIiwiaXNfMmZhIjp0cnVlLCJleHAiOjE3NDI0MDQ4OTN9.X6VXwQhIaK3EccGoFD7twwnX9Wyv1GVjBUidba6C6Gw
+INFO:     100.64.0.25:58286 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.25:58286 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:58288 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:58286 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:58288 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:58286 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:58288 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:sendd:Email sent successfully: {'id': '16381944-2909-46bf-9301-1db4f1de7d40'}
+INFO:     100.64.0.25:58286 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:sendd:Email sent successfully: {'id': '87287022-282f-4a57-8995-734a36c32a9f'}
+INFO:     100.64.0.25:58288 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50208 - "OPTIONS /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50208 - "POST /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50208 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:49346 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:49350 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:49362 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:49346 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50208 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:49346 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:49362 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:58908 - "OPTIONS /autocomplete/memberships?query=n HTTP/1.1" 200 OK
+INFO:     100.64.0.26:58908 - "OPTIONS /autocomplete/memberships?query=ne HTTP/1.1" 200 OK
+INFO:     100.64.0.26:58908 - "OPTIONS /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.26:58908 - "GET /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.27:42980 - "OPTIONS /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:api:Verification initialized for member: GH006, token: 260f415a-92e0-4861-985c-e5d9a7911624
+INFO:     100.64.0.27:42980 - "POST /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:     100.64.0.27:42980 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:42980 - "OPTIONS /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:42984 - "OPTIONS /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:42980 - "OPTIONS /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:42990 - "OPTIONS /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43004 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:42984 - "GET /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43004 - "GET /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43004 - "GET /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:40878 - "OPTIONS /api/encounter/members/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:40880 - "OPTIONS /api/encounter/members/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:40876 - "GET /api/encounter/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:40878 - "GET /api/encounter/members/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:40876 - "GET /api/encounter/members/260f415a-92e0-4861-985c-e5d9a7911624 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:36558 - "OPTIONS /login HTTP/1.1" 200 OK
+ERROR:api:Error during login: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+
+[SQL: SELECT users.id AS users_id, users.hospital_name AS users_hospital_name, users.email AS users_email, users.password AS users_password, users.location AS users_location, users.totp_secret AS users_totp_secret, users.backup_codes AS users_backup_codes, users.is_2fa_enabled AS users_is_2fa_enabled, users.is_email_2fa_enabled AS users_is_email_2fa_enabled 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'blvcksaphhire@gmail.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     100.64.0.26:36558 - "POST /login HTTP/1.1" 500 Internal Server Error
+INFO:api:Generated short-lived token for 2FA: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsdmNrc2FwaGhpcmVAZ21haWwuY29tIiwiaXNfMmZhIjp0cnVlLCJleHAiOjE3NDI0MTg4OTN9.jQZWX8JZ4y_Q6f7gS0Wwpz-ywdzyr4RJptq4gWNAoOQ
+INFO:     100.64.0.26:36558 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.25:51086 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:51092 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:51092 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:51092 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:51092 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36526 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+ERROR:api:Unhandled exception: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+[SQL: INSERT INTO email_two_factor (email, otp, created_at, expires_at) VALUES (%(email)s, %(otp)s, %(created_at)s, %(expires_at)s) RETURNING email_two_factor.id]
+[parameters: {'email': 'blvcksaphhire@gmail.com', 'otp': '777103', 'created_at': datetime.datetime(2025, 3, 19, 21, 9, 58, 338652), 'expires_at': datetime.datetime(2025, 3, 19, 21, 11, 58, 245910)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+INFO:     100.64.0.25:51092 - "POST /send-otp HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 181, in __call__
+    raise app_exc
+  File "/workspace/nhis/api.py", line 97, in db_session_middleware
+    response = await call_next(request)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 153, in call_next
+    raise app_exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 140, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 2461, in run_sync_in_worker_thread
+    return await future
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 962, in run
+    result = context.run(func, *args)
+  File "/workspace/nhis/api.py", line 218, in send_otp
+    db.commit()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+[SQL: INSERT INTO email_two_factor (email, otp, created_at, expires_at) VALUES (%(email)s, %(otp)s, %(created_at)s, %(expires_at)s) RETURNING email_two_factor.id]
+[parameters: {'email': 'blvcksaphhire@gmail.com', 'otp': '777103', 'created_at': datetime.datetime(2025, 3, 19, 21, 9, 58, 338652), 'expires_at': datetime.datetime(2025, 3, 19, 21, 11, 58, 245910)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+INFO:sendd:Email sent successfully: {'id': '8d95e3b6-ebe9-40c8-97b8-769a8cee423d'}
+INFO:     100.64.0.25:36526 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36372 - "OPTIONS /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36372 - "POST /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36372 - "OPTIONS /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36382 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36372 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36390 - "OPTIONS /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36406 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36382 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36372 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36424 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36390 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36390 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36414 - "GET /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50384 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50400 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50400 - "GET /my_verifications?limit=15 HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.27:50384 - "GET /user/profile HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.26:40488 - "OPTIONS /login HTTP/1.1" 200 OK
+ERROR:api:Error during login: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+
+[SQL: SELECT users.id AS users_id, users.hospital_name AS users_hospital_name, users.email AS users_email, users.password AS users_password, users.location AS users_location, users.totp_secret AS users_totp_secret, users.backup_codes AS users_backup_codes, users.is_2fa_enabled AS users_is_2fa_enabled, users.is_email_2fa_enabled AS users_is_email_2fa_enabled 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'blvcksaphhire@gmail.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     100.64.0.26:40488 - "POST /login HTTP/1.1" 500 Internal Server Error
+INFO:api:Generated short-lived token for 2FA: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsdmNrc2FwaGhpcmVAZ21haWwuY29tIiwiaXNfMmZhIjp0cnVlLCJleHAiOjE3NDI0NTkyNTd9.WhhU0pikMFypZvIlXHry-79OURNsJkFujl0PzTnqc5w
+INFO:     100.64.0.26:40500 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.27:58298 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.27:58312 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.27:58312 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.27:58298 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.27:58322 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.27:58312 - "GET /check-mfa HTTP/1.1" 200 OK
+ERROR:api:Unhandled exception: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+[SQL: INSERT INTO email_two_factor (email, otp, created_at, expires_at) VALUES (%(email)s, %(otp)s, %(created_at)s, %(expires_at)s) RETURNING email_two_factor.id]
+[parameters: {'email': 'blvcksaphhire@gmail.com', 'otp': '708093', 'created_at': datetime.datetime(2025, 3, 20, 8, 22, 43, 300628), 'expires_at': datetime.datetime(2025, 3, 20, 8, 24, 43, 205420)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+INFO:     100.64.0.27:58298 - "POST /send-otp HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 181, in __call__
+    raise app_exc
+  File "/workspace/nhis/api.py", line 97, in db_session_middleware
+    response = await call_next(request)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 153, in call_next
+    raise app_exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 140, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 2461, in run_sync_in_worker_thread
+    return await future
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 962, in run
+    result = context.run(func, *args)
+  File "/workspace/nhis/api.py", line 218, in send_otp
+    db.commit()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+[SQL: INSERT INTO email_two_factor (email, otp, created_at, expires_at) VALUES (%(email)s, %(otp)s, %(created_at)s, %(expires_at)s) RETURNING email_two_factor.id]
+[parameters: {'email': 'blvcksaphhire@gmail.com', 'otp': '708093', 'created_at': datetime.datetime(2025, 3, 20, 8, 22, 43, 300628), 'expires_at': datetime.datetime(2025, 3, 20, 8, 24, 43, 205420)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+INFO:sendd:Email sent successfully: {'id': '055077e0-1884-47fc-9a9e-ab4b35f44ee5'}
+INFO:     100.64.0.27:58322 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50318 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50318 - "POST /send-otp HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.25:50614 - "POST /send-otp HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.25:50614 - "POST /send-otp HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.27:43220 - "OPTIONS /login HTTP/1.1" 200 OK
+ERROR:api:Error during login: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+
+[SQL: SELECT users.id AS users_id, users.hospital_name AS users_hospital_name, users.email AS users_email, users.password AS users_password, users.location AS users_location, users.totp_secret AS users_totp_secret, users.backup_codes AS users_backup_codes, users.is_2fa_enabled AS users_is_2fa_enabled, users.is_email_2fa_enabled AS users_is_email_2fa_enabled 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'blvcksaphhire@gmail.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     100.64.0.27:43220 - "POST /login HTTP/1.1" 500 Internal Server Error
+INFO:api:Generated short-lived token for 2FA: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsdmNrc2FwaGhpcmVAZ21haWwuY29tIiwiaXNfMmZhIjp0cnVlLCJleHAiOjE3NDI0NjA3ODF9.Z8E5POyaIrcqJoGcWeiljQARU2wE-8ojybcL1XuSoJU
+INFO:     100.64.0.27:43236 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43236 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.27:38236 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43236 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43236 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:sendd:Email sent successfully: {'id': 'bbe9769e-f5e0-4642-b754-23da2e69be73'}
+INFO:     100.64.0.27:38238 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:sendd:Email sent successfully: {'id': '4c7fe065-cf34-4716-b7bc-54ab5d51ad9b'}
+INFO:     100.64.0.27:43236 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.27:47982 - "OPTIONS /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.27:47982 - "POST /verify-otp HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.27:47990 - "POST /verify-otp HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.27:48386 - "POST /verify-otp HTTP/1.1" 401 Unauthorized
+INFO:     100.64.0.26:42010 - "POST /verify-otp HTTP/1.1" 401 Unauthorized
+INFO:api:Generated short-lived token for 2FA: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsdmNrc2FwaGhpcmVAZ21haWwuY29tIiwiaXNfMmZhIjp0cnVlLCJleHAiOjE3NDI0NjA4NzV9.4ELbNNQga3QhluwOnVjCXK4hFCzn2PSubEZbxA5kNIw
+INFO:     100.64.0.25:54638 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.25:54638 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:54638 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:sendd:Email sent successfully: {'id': 'eb64fcb1-0321-4267-a4d3-ac7da2337eea'}
+INFO:     100.64.0.25:54638 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:sendd:Email sent successfully: {'id': 'a3176474-5eaf-4de1-ad69-dfbb77d5daed'}
+INFO:     100.64.0.25:54646 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52584 - "POST /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52584 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52594 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52608 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52612 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52584 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52594 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52608 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:52608 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:60382 - "OPTIONS /autocomplete/memberships?query=n HTTP/1.1" 200 OK
+INFO:     100.64.0.25:60394 - "OPTIONS /autocomplete/memberships?query=ne HTTP/1.1" 200 OK
+INFO:     100.64.0.25:60394 - "OPTIONS /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.25:60394 - "GET /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60832 - "OPTIONS /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:api:Verification initialized for member: GH006, token: 25385261-cdbe-4e89-94ca-6ce6abd62610
+INFO:     100.64.0.26:60832 - "POST /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60838 - "OPTIONS /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60850 - "OPTIONS /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60864 - "OPTIONS /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60832 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60850 - "OPTIONS /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60838 - "GET /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60850 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60850 - "GET /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60850 - "GET /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60850 - "GET /api/encounter/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60850 - "OPTIONS /api/encounter/members/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:60870 - "OPTIONS /api/encounter/members/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43426 - "GET /api/encounter/members/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43426 - "GET /api/encounter/members/25385261-cdbe-4e89-94ca-6ce6abd62610 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:42434 - "OPTIONS /login HTTP/1.1" 200 OK
+ERROR:api:Error during login: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+
+[SQL: SELECT users.id AS users_id, users.hospital_name AS users_hospital_name, users.email AS users_email, users.password AS users_password, users.location AS users_location, users.totp_secret AS users_totp_secret, users.backup_codes AS users_backup_codes, users.is_2fa_enabled AS users_is_2fa_enabled, users.is_email_2fa_enabled AS users_is_email_2fa_enabled 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'blvcksaphhire@gmail.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     100.64.0.25:42434 - "POST /login HTTP/1.1" 500 Internal Server Error
+INFO:     100.64.0.25:58946 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.27:49468 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:49484 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:49484 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:49468 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:60930 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:43776 - "OPTIONS /verified_encounters?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:43760 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:43776 - "GET /verified_encounters?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:34680 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:34688 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.27:43962 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57958 - "OPTIONS /login HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57958 - "POST /login HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57958 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57962 - "OPTIONS /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57958 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57958 - "GET /check-mfa HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33318 - "OPTIONS /enable-email-2fa HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33322 - "OPTIONS /enable-email-2fa HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33318 - "POST /enable-email-2fa HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33322 - "POST /enable-email-2fa HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33322 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33322 - "OPTIONS /send-otp HTTP/1.1" 200 OK
+ERROR:api:Unhandled exception: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+[SQL: INSERT INTO email_two_factor (email, otp, created_at, expires_at) VALUES (%(email)s, %(otp)s, %(created_at)s, %(expires_at)s) RETURNING email_two_factor.id]
+[parameters: {'email': 'blvcksaphhire@gmail.com', 'otp': '424777', 'created_at': datetime.datetime(2025, 3, 20, 20, 58, 1, 612691), 'expires_at': datetime.datetime(2025, 3, 20, 21, 0, 1, 517729)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+INFO:     100.64.0.26:33318 - "POST /send-otp HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 181, in __call__
+    raise app_exc
+  File "/workspace/nhis/api.py", line 97, in db_session_middleware
+    response = await call_next(request)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 153, in call_next
+    raise app_exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/base.py", line 140, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/fastapi/routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 2461, in run_sync_in_worker_thread
+    return await future
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 962, in run
+    result = context.run(func, *args)
+  File "/workspace/nhis/api.py", line 218, in send_otp
+    db.commit()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "email_two_factor_email_key"
+DETAIL:  Key (email)=(blvcksaphhire@gmail.com) already exists.
+
+[SQL: INSERT INTO email_two_factor (email, otp, created_at, expires_at) VALUES (%(email)s, %(otp)s, %(created_at)s, %(expires_at)s) RETURNING email_two_factor.id]
+[parameters: {'email': 'blvcksaphhire@gmail.com', 'otp': '424777', 'created_at': datetime.datetime(2025, 3, 20, 20, 58, 1, 612691), 'expires_at': datetime.datetime(2025, 3, 20, 21, 0, 1, 517729)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+INFO:sendd:Email sent successfully: {'id': 'a0fa3b8e-864e-428f-8a14-dcf1a4d03ebc'}
+INFO:     100.64.0.26:33322 - "POST /send-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:41958 - "OPTIONS /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:41958 - "POST /verify-otp HTTP/1.1" 200 OK
+INFO:     100.64.0.26:41958 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53618 - "OPTIONS /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.26:41958 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53630 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53632 - "OPTIONS /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53642 - "OPTIONS /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53618 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53630 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53644 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:41958 - "GET /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.26:53644 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:56364 - "OPTIONS /verified_encounters?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:56358 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:56374 - "OPTIONS /verified_encounters?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:56364 - "GET /verified_encounters?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.25:56374 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:56364 - "GET /verified_encounters?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:51360 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:51356 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:51360 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:51356 - "GET /my_verifications?limit=15 HTTP/1.1" 200 OK
+INFO:     100.64.0.26:43626 - "OPTIONS /autocomplete/memberships?query=n HTTP/1.1" 200 OK
+INFO:     100.64.0.26:43642 - "OPTIONS /autocomplete/memberships?query=ne HTTP/1.1" 200 OK
+INFO:     100.64.0.26:43642 - "GET /autocomplete/memberships?query=ned HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50810 - "OPTIONS /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:api:Verification initialized for member: GH006, token: 847494ce-e2d8-4a34-b15e-1489d9538bbf
+INFO:     100.64.0.27:50810 - "POST /api/initiate-encounter HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50810 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50810 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50822 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50810 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50838 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50854 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50838 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50854 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:50854 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:56208 - "OPTIONS /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:56210 - "OPTIONS /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:56200 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:56208 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:56200 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:40300 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:40296 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:40296 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:40296 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:40296 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:37432 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:37448 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:37448 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:37448 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:37448 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:59244 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:59234 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:59234 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:59234 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:59234 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50614 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50628 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50628 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50628 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50628 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:53830 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:53820 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:53820 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:53820 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:53820 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57094 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57106 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57094 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57094 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57094 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57094 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:59764 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:59748 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:59748 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:59748 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:59748 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:38950 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:38964 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:38964 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:38964 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:38964 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57814 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57824 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57832 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57824 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57832 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57832 - "OPTIONS /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57814 - "OPTIONS /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57814 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57814 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:35066 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:35082 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:35082 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:35082 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:35082 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:39856 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:39858 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:39858 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:39858 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:39858 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:50498 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.26:50502 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:50502 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:50502 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:50502 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:34664 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:34674 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.27:34674 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:34674 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:34674 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:34998 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:34998 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:35866 - "OPTIONS /api/compare HTTP/1.1" 200 OK
+INFO:     100.64.0.25:35944 - "POST /api/compare HTTP/1.1" 200 OK
+INFO:     100.64.0.26:57308 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:52444 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:52458 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:52458 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:52458 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:60868 - "POST /api/compare HTTP/1.1" 200 OK
+INFO:     100.64.0.27:60868 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:57928 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:57930 - "OPTIONS /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+ERROR:api:Error retrieving verification data: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+
+[SQL: SELECT users.id AS users_id, users.hospital_name AS users_hospital_name, users.email AS users_email, users.password AS users_password, users.location AS users_location, users.totp_secret AS users_totp_secret, users.backup_codes AS users_backup_codes, users.is_2fa_enabled AS users_is_2fa_enabled, users.is_email_2fa_enabled AS users_is_email_2fa_enabled 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'blvcksaphhire@gmail.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.OperationalError: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/nhis/api.py", line 1010, in get_verification_by_token
+    user = db.query(User).filter(User.email == user_email).first()
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2754, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2853, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+
+[SQL: SELECT users.id AS users_id, users.hospital_name AS users_hospital_name, users.email AS users_email, users.password AS users_password, users.location AS users_location, users.totp_secret AS users_totp_secret, users.backup_codes AS users_backup_codes, users.is_2fa_enabled AS users_is_2fa_enabled, users.is_email_2fa_enabled AS users_is_email_2fa_enabled 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'blvcksaphhire@gmail.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     100.64.0.27:57930 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 500 Internal Server Error
+INFO:     100.64.0.27:57928 - "OPTIONS /api/compare HTTP/1.1" 200 OK
+INFO:     100.64.0.27:57930 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+ERROR:utils:Error comparing faces: Multiple faces detected in image when only one was expected
+ERROR:utils:Error in compare_blobs: Multiple faces detected in image when only one was expected
+ERROR:api:Error in face comparison: Multiple faces detected in image when only one was expected
+Traceback (most recent call last):
+  File "/workspace/nhis/api.py", line 876, in compare_images
+    comparison_result = await face_system.compare_blobs(profile_image_url, webcam_image)
+  File "/workspace/nhis/utils.py", line 167, in compare_blobs
+    return self.compare_faces(member_image_rgb, webcam_image_rgb, threshold)
+  File "/workspace/nhis/utils.py", line 99, in compare_faces
+    face2_info = self.get_face_info(img2, require_single_face=True)[0]
+  File "/workspace/nhis/utils.py", line 46, in get_face_info
+    raise ValueError("Multiple faces detected in image when only one was expected")
+ValueError: Multiple faces detected in image when only one was expected
+INFO:     100.64.0.27:37418 - "POST /api/compare HTTP/1.1" 500 Internal Server Error
+INFO:     100.64.0.26:34054 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:34054 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:49780 - "POST /api/compare HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57990 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:49288 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.27:49288 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+ERROR:utils:Error comparing faces: No faces detected in image
+ERROR:utils:Error in compare_blobs: No faces detected in image
+ERROR:api:Error in face comparison: No faces detected in image
+Traceback (most recent call last):
+  File "/workspace/nhis/api.py", line 876, in compare_images
+    comparison_result = await face_system.compare_blobs(profile_image_url, webcam_image)
+  File "/workspace/nhis/utils.py", line 167, in compare_blobs
+    return self.compare_faces(member_image_rgb, webcam_image_rgb, threshold)
+  File "/workspace/nhis/utils.py", line 99, in compare_faces
+    face2_info = self.get_face_info(img2, require_single_face=True)[0]
+  File "/workspace/nhis/utils.py", line 43, in get_face_info
+    raise ValueError("No faces detected in image")
+ValueError: No faces detected in image
+INFO:     100.64.0.27:48358 - "POST /api/compare HTTP/1.1" 500 Internal Server Error
+INFO:     100.64.0.26:34214 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:34214 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:42088 - "POST /api/compare HTTP/1.1" 200 OK
+INFO:     100.64.0.25:42088 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50716 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:50716 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.26:33636 - "POST /api/compare HTTP/1.1" 200 OK
+INFO:     100.64.0.25:47926 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36982 - "OPTIONS /api/dispositions HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36990 - "OPTIONS /api/dispositions HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36982 - "GET /api/dispositions HTTP/1.1" 200 OK
+INFO:     100.64.0.25:36982 - "GET /api/dispositions HTTP/1.1" 200 OK
+INFO:     100.64.0.27:38032 - "OPTIONS /api/encounter HTTP/1.1" 200 OK
+INFO:     100.64.0.27:38032 - "POST /api/encounter HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57176 - "OPTIONS /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57188 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57176 - "GET /user/profile HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57176 - "GET /api/encounter/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57176 - "OPTIONS /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57188 - "OPTIONS /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57188 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+INFO:     100.64.0.25:57188 - "GET /api/encounter/members/847494ce-e2d8-4a34-b15e-1489d9538bbf HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'api.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [122569]
+/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py:118: UserWarning: Specified provider 'CUDAExecutionProvider' is not in available provider names.Available providers: 'AzureExecutionProvider, CPUExecutionProvider'
+  warnings.warn(
+INFO:     Started server process [124189]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'api.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [124189]
+/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py:118: UserWarning: Specified provider 'CUDAExecutionProvider' is not in available provider names.Available providers: 'AzureExecutionProvider, CPUExecutionProvider'
+  warnings.warn(
+INFO:     Started server process [124557]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'api.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [124557]
+/root/.local/share/virtualenvs/workspace-dqq3IVyd/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py:118: UserWarning: Specified provider 'CUDAExecutionProvider' is not in available provider names.Available providers: 'AzureExecutionProvider, CPUExecutionProvider'
+  warnings.warn(
+INFO:     Started server process [124929]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

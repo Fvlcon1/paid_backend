@@ -1,0 +1,93 @@
+import uuid
+import datetime
+from sqlalchemy import create_engine, Column, String, DateTime, ForeignKey, Index, Integer, Boolean, JSON
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship
+from databases import Database
+from sqlalchemy.dialects.postgresql import UUID
+
+# Database URL
+DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-yellow-dust-a45jsws7-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+
+# Database setup
+database = Database(DATABASE_URL)
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+class Disposition(Base):
+    __tablename__ = "dispositions"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    name = Column(String, unique=True, nullable=False, index=True)
+    description = Column(String, nullable=False)
+
+# Function to initialize the database
+def init_db():
+    Base.metadata.create_all(bind=engine)
+
+# Initialize the database
+init_db()
+
+
+
+def populate_dispositions():
+    db = SessionLocal()
+    dispositions = [
+        {"id": 1, "name": "Discharged", "description": "Patient discharged home."},
+        {"id": 2, "name": "Admitted", "description": "Patient admitted to the hospital."},
+        {"id": 3, "name": "Transferred", "description": "Patient transferred to another facility."},
+        {"id": 4, "name": "Referred", "description": "Patient referred to a specialist."},
+        {"id": 5, "name": "Follow-Up", "description": "Patient scheduled for follow-up."},
+        {"id": 6, "name": "Death", "description": "Patient passed away."},
+        {"id": 7, "name": "Against Medical Advice", "description": "Patient left against medical advice."},
+        {"id": 8, "name": "Observation", "description": "Patient under observation."},
+        {"id": 9, "name": "Home Care", "description": "Patient sent home with care plan."},
+        {"id": 10, "name": "Hospice Care", "description": "Patient referred to hospice care."},
+        {"id": 11, "name": "Emergency Discharge", "description": "Patient discharged from the ED."},
+        {"id": 12, "name": "Pending Tests", "description": "Patient awaiting test results."},
+        {"id": 13, "name": "No Further Action", "description": "No further action required."},
+        {"id": 14, "name": "Routine Check-Up", "description": "Routine check-up completed."},
+        {"id": 15, "name": "Behavioral Health", "description": "Patient referred to behavioral health."},
+        {"id": 16, "name": "Surgery Scheduled", "description": "Patient scheduled for surgery."},
+        {"id": 17, "name": "Palliative Care", "description": "Patient referred to palliative care."},
+        {"id": 18, "name": "Lost to Follow-Up", "description": "Patient lost to follow-up."},
+        {"id": 19, "name": "Self-Care", "description": "Patient advised to self-care."},
+        {"id": 20, "name": "Quarantine/Isolation", "description": "Patient placed in quarantine."}
+    ]
+    try:
+        for disp in dispositions:
+            db.merge(Disposition(**disp))  # Upsert operation
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        print(f"Error inserting dispositions: {e}")
+    finally:
+        db.close()
+
+# Populate dispositions table
+populate_dispositions()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

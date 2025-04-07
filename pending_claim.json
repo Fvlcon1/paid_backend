@@ -1,0 +1,33 @@
+{
+    "id": "58d5d18a-e22e-4bac-a37e-e856777c1451",
+    "diagnosis": "Pneumonia",
+    "medical_procedures": [
+        "Chest X-ray",
+        "Nebulization Therapy"
+    ],
+    "lab_tests": [
+        "Complete Blood Count",
+        "Sputum Culture",
+        "CRP Test"
+    ],
+    "service_type": [
+        "Consultation",
+        "Hospitalization",
+        "Medication"
+    ],
+    "drugs": [
+        {
+            "code": "AZITHRO500",
+            "quantity": 2
+        },
+        {
+            "code": "PARA500",
+            "quantity": 3
+        },
+        {
+            "code": "VENTOLIN",
+            "quantity": 1
+        }
+    ],
+    "expected_payout": 1200.0
+}
