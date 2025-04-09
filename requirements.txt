@@ -21,3 +21,5 @@ dotenv
 boto3
 awscli
 openai
+resend
+fastapi[standard]
