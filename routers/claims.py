@@ -1,10 +1,12 @@
 # routers/claims.py
 from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import select  # 👈 add this
 from sqlalchemy.orm import Session
 from datetime import datetime
 from typing import List, Optional
 import uuid
 import logging
+
 
 from db import SessionLocal, Claim, VerificationToken, User
 from schemas import ClaimCreate, ClaimResponse

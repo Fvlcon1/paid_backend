@@ -23,3 +23,5 @@ awscli
 openai
 resend
 fastapi[standard]
+sqlalchemy
+passlib[bcrypt]
