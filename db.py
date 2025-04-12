@@ -414,15 +414,6 @@ class RecentVisit(Base):
         )
 
 
-# Function to initialize the database
-def init_db():
-    Base.metadata.create_all(bind=engine)
-
-
-# Initialize the database and create both tables
-init_db()
-
-
 # Helper function to get database session
 def get_db():
     db = SessionLocal()

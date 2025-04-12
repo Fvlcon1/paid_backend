@@ -24,6 +24,7 @@ import string
 import jwt
 import boto3
 import os
+from db import Base, engine
 
 # Internal modules
 from db import SessionLocal, Member, RecentVisit, User, VerificationToken, Disposition, Claim, Medicines, ServiceTariffs, EmailTwoFactor, ClaimDraft,ICD10Code, Investigation, ZoomCode, DentProcedure, OPDProcedure, ENTProcedure, MedicineProcedure, PaediatricProcedure, SurgeryProcedure
@@ -39,6 +40,9 @@ from qr import generate_qr_code_base64
 from routers import icd
 from routers import investigations, dent, med, paediatrics, opd, ent
 from routers import zoom
+
+# initialize the database
+Base.metadata.create_all(bind=engine)
 
 # Load environment variables
 load_dotenv()
@@ -110,6 +114,7 @@ async def db_session_middleware(request: Request, call_next):
 from routers import (
     auth, users, mfa, encounters, members, claims, drafts, medicines, services, visits, dispositions
 )
+from src.expert_system import controller as expert_system_controller
 
 app.include_router(auth.router)
 app.include_router(users.router)
@@ -130,6 +135,7 @@ app.include_router(med.router)
 app.include_router(ent.router)
 app.include_router(paediatrics.router)
 app.include_router(opd.router)
+app.include_router(expert_system_controller.router)
 
 # Optionally include a health check route
 def create_health_check(app: FastAPI):

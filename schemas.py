@@ -319,9 +319,8 @@ class InvestigationResponse(BaseModel):
 
 class Drug(BaseModel):
     code: str
-    dosage: str
-    frequency: Optional[str] = None
-    duration: Optional[str] = None
+    frequency: Optional[int] = None
+    duration: Optional[int] = None
 
 # Request model for creating a claim
 class ClaimCreate(BaseModel):

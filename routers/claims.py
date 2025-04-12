@@ -37,7 +37,7 @@ def submit_claim(
     full_name = f"{verification.first_name} {verification.middle_name or ''} {verification.last_name}".strip()
 
     # Convert drugs list into a proper JSON object
-    drugs_list = [{"code": drug.code, "dosage": drug.dosage, "frequency": drug.frequency, "duration": drug.duration} for drug in claim_data.drugs]
+    drugs_list = [{"code": drug.code, "frequency": drug.frequency, "duration": drug.duration} for drug in claim_data.drugs]
 
     # Create a new claim
     new_claim = Claim(
@@ -75,7 +75,7 @@ def get_claims(
     limit: int = Query(10, ge=1, le=100),
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    # current_user: User = Depends(get_current_user)
 ):
     try:
         query = db.query(Claim)
@@ -165,3 +165,17 @@ def get_claims_by_status(db: Session, status: str):
     
     return results
 
+@router.delete("/delete/{encounter_token}")
+def delete_claim(encounter_token: str, db: Session = Depends(get_db)):
+    try:
+        claim = db.query(Claim).filter(Claim.encounter_token == encounter_token).first()
+        if not claim:
+            raise HTTPException(status_code=404, detail="Claim not found")
+
+        db.delete(claim)
+        db.commit()
+        return {"message": "Claim deleted successfully"}
+    
+    except Exception as e:
+        logger.error(f"Error deleting claim: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Error deleting claim")
