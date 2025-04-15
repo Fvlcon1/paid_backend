@@ -6,7 +6,7 @@ import openai
 import time  # Import the time module for sleep functionality
 
 # Database and API connection strings
-DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-yellow-dust-a45jsws7-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-ancient-smoke-a4h6qbnr-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 OPENAI_API_KEY = "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"
 ASSISTANT_ID = "asst_fbnh9vuQ3TsMkPxtWpiFpjaE"
 
