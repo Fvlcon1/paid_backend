@@ -10,13 +10,7 @@ from fastapi import UploadFile
 
 class FaceComparisonSystem:
     def __init__(self, model_name: str = "buffalo_l", det_size: Tuple[int, int] = (640, 640)):
-        """
-        Initialize the face comparison system
         
-        Args:
-            model_name: Name of the InsightFace model to use
-            det_size: Detection size for face analysis
-        """
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s'
@@ -60,7 +54,7 @@ class FaceComparisonSystem:
         return face_info
 
     def calculate_similarity_metrics(self, emb1: np.ndarray, emb2: np.ndarray) -> Dict[str, float]:
-        """Calculate various similarity metrics between two embeddings"""
+        
         cosine_sim = 1 - cosine(emb1, emb2)
         euclidean_dist = euclidean(emb1, emb2)
         
@@ -80,17 +74,7 @@ class FaceComparisonSystem:
         }
 
     def compare_faces(self, img1_path: str, img2_path: str, threshold: float = 0.5) -> Dict:
-        """
-        Perform detailed face comparison between two images
-        
-        Args:
-            img1_path: Path to first image
-            img2_path: Path to second image
-            threshold: Similarity threshold for considering faces a match
-            
-        Returns:
-            Dictionary containing detailed comparison results
-        """
+       
         try:
             # Process images
             img1 = self.process_image(img1_path)
@@ -167,7 +151,7 @@ class FaceComparisonSystem:
 
     def batch_compare(self, target_image: str, comparison_images: List[str], 
                      threshold: float = 0.5) -> List[Dict]:
-        """Compare one face against multiple other faces"""
+        
         results = []
         
         try:
