@@ -3,7 +3,6 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from datetime import datetime
 from typing import List, Optional
-import uuid
 import logging
 
 from db import SessionLocal, Claim, VerificationToken, User
@@ -88,6 +87,18 @@ def get_claims(
     except Exception as e:
         logger.error(f"Error retrieving claims: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="Internal server error during claim retrieval")
+
+@router.get("/{token}", response_model=ClaimResponse)
+def get_claim_by_token(token: str, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    claim = db.query(Claim).filter(
+        Claim.encounter_token == token,
+        Claim.user_id == current_user.id
+    ).first()
+
+    if not claim:
+        raise HTTPException(status_code=404, detail="Claim not found")
+
+    return claim
 
 @router.get("/approved", response_model=List[ClaimResponse])
 def get_approved_claims(db: Session = Depends(get_db)):
