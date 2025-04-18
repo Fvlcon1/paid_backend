@@ -12,7 +12,7 @@ def process_claim(claim: Claim, db: Session):
     approved_drug_count = 0
 
     try:
-        # Step 1: Fetch the actual claim from DB (in case a detached instance was passed)
+        # Step 1: Fetch the actual claim from DB
         claim = db.query(Claim).filter(Claim.encounter_token == claim.encounter_token).first()
         if not claim:
             logger.warning("Claim not found")
@@ -45,7 +45,7 @@ def process_claim(claim: Claim, db: Session):
         for drug in claim.drugs:
             drug_code = drug.get("code")
             if not drug_code or drug_code not in valid_treatments:
-                reasons.append(f"Drug '{drug_code}' is not a valid drug")
+                reasons.append(f"Drug '{drug_code}' is not covered")
                 continue
 
             treatment = valid_treatments[drug_code]
