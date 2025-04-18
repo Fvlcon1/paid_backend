@@ -330,6 +330,13 @@ class ClaimCreate(BaseModel):
     drugs: List[Drug]
     medical_procedures: List[str]
     lab_tests: List[str]
+
+    service_outcome: Optional[str] = None
+    service_type_1: Optional[str] = None
+    service_type_2: Optional[str] = None
+    specialties: Optional[List[str]] = None
+    type_of_attendance: Optional[str] = None
+    pharmacy: Optional[bool] = False
     
 
 
@@ -351,6 +358,13 @@ class ClaimResponse(BaseModel):
     patient_name: str  
     hospital_name: str  
     location: str  
+
+    service_outcome: Optional[str] = None
+    service_type_1: Optional[str] = None
+    service_type_2: Optional[str] = None
+    specialties: Optional[List[str]] = None
+    type_of_attendance: Optional[str] = None
+    pharmacy: Optional[bool] = False
 
 
 

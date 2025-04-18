@@ -25,3 +25,4 @@ resend
 fastapi[standard]
 sqlalchemy
 passlib[bcrypt]
+alembic

@@ -30,15 +30,24 @@ class Claim(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False, index=True)  
 
     # New Fields
-    status = Column(String, nullable=False, default="pending")  # 'approved', 'flagged', 'rejected'
-    reason = Column(String, nullable=True)  # Reason for flag/rejection
-    adjusted_amount = Column(Float, nullable=True)  # Adjusted NHIS payout after review
-    total_payout = Column(Float, nullable=True)  # Original total payout requested
+    status = Column(String, nullable=False, default="pending") 
+    reason = Column(String, nullable=True)  
+    adjusted_amount = Column(Float, nullable=True)  
+    total_payout = Column(Float, nullable=True)  
     
     # Additional Fields
-    patient_name = Column(String, nullable=False)  # Patient's name
-    hospital_name = Column(String, nullable=False)  # Hospital name
-    location = Column(String, nullable=False)  # Location of the hospital
+    patient_name = Column(String, nullable=False)  
+    hospital_name = Column(String, nullable=False)  
+    location = Column(String, nullable=False)  
+
+    # New fields 
+    service_outcome = Column(String, nullable=True)
+    service_type_1 = Column(String, nullable=True)
+    service_type_2 = Column(String, nullable=True)
+    specialties = Column(ARRAY(String), nullable=True)
+    type_of_attendance = Column(String, nullable=True)
+    pharmacy = Column(Boolean, default=False, nullable=False)
+
 
     # Relationships
     verification_token = relationship("VerificationToken", backref="claims")

@@ -3,102 +3,80 @@ import psycopg2
 import psycopg2.extras
 from datetime import datetime
 import openai
-import time  # Import the time module for sleep functionality
+import time
 
-# Database and API connection strings
 DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-ancient-smoke-a4h6qbnr-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
-OPENAI_API_KEY = "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"
-ASSISTANT_ID = "asst_fbnh9vuQ3TsMkPxtWpiFpjaE"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-# Initialize OpenAI client
+
 openai.api_key = OPENAI_API_KEY
+
+
+def find_code_details(cursor, code_to_find, exclude_tables=None):
+    exclude_tables = exclude_tables or set()
+    cursor.execute("""
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' AND table_type = 'BASE TABLE'
+    """)
+    tables = [row['table_name'] for row in cursor.fetchall()]
+
+    for table in tables:
+        if table in exclude_tables:
+            continue
+
+        try:
+            cursor.execute("""
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name = %s AND column_name = 'code'
+            """, (table,))
+            if cursor.fetchone():
+                cursor.execute(f"SELECT * FROM {table} WHERE code = %s LIMIT 1", (code_to_find,))
+                match = cursor.fetchone()
+                if match:
+                    return {**match, "source_table": table}
+        except Exception as e:
+            print(f"Skipped table {table}: {e}")
+            continue
+    return None
 
 def process_pending_claims():
     time.sleep(20)
-    """
-    Retrieve a pending claim, send it to ChatGPT for assessment,
-    and update the database with the standardized response.
-    """
     try:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cursor:
-                # Query pending claim
-                cursor.execute("""
-                    SELECT * FROM claims 
-                    WHERE status = %s 
-                    LIMIT 1
-                """, ('pending',))
-
+                cursor.execute("SELECT * FROM claims WHERE status = %s LIMIT 1", ('pending',))
                 pending_claim = cursor.fetchone()
                 if not pending_claim:
                     print(json.dumps({"message": "No pending claims found."}, indent=2))
                     return
-                
-                # Store encounter_token for later update
+
                 claim_encounter_token = pending_claim['encounter_token']
-                
-                # Create a copy of the claim data excluding created_at
-                claim_data_for_processing = {k: v for k, v in pending_claim.items() if k != 'created_at'}
-                
-                # Convert remaining datetime fields to strings
-                for key, value in claim_data_for_processing.items():
-                    if isinstance(value, datetime):
-                        claim_data_for_processing[key] = value.isoformat()
+                claim_data = {k: v for k, v in pending_claim.items() if k != 'created_at'}
 
-                # Enrich drugs list with medicine details
-                if 'drugs' in claim_data_for_processing and isinstance(claim_data_for_processing['drugs'], list):
-                    enriched_drugs = []
-                    for drug in claim_data_for_processing['drugs']:
-                        drug_code = drug.get('code')
-                        if drug_code:
-                            cursor.execute("""
-                                SELECT * FROM medicines WHERE code = %s
-                            """, (drug_code,))
-                            medicine_details = cursor.fetchone()
-                            if medicine_details:
-                                drug['details'] = {k: v for k, v in medicine_details.items() if k != 'created_at'}
-                        enriched_drugs.append(drug)
-                    claim_data_for_processing['drugs'] = enriched_drugs
+                for k, v in claim_data.items():
+                    if isinstance(v, datetime):
+                        claim_data[k] = v.isoformat()
 
-                # Enrich medical procedures with service details
-                if 'medical_procedures' in claim_data_for_processing and isinstance(claim_data_for_processing['medical_procedures'], list):
-                    enriched_procedures = []
-                    for procedure_code in claim_data_for_processing['medical_procedures']:
-                        cursor.execute("""
-                            SELECT * FROM service_tariffs WHERE code = %s
-                        """, (procedure_code,))
-                        procedure_details = cursor.fetchone()
-                        if procedure_details:
-                            enriched_procedures.append({k: v for k, v in procedure_details.items() if k != 'created_at'})
-                        else:
-                            enriched_procedures.append({"code": procedure_code, "details": "Not covered by NHIS"})
-                    claim_data_for_processing['medical_procedures'] = enriched_procedures
+                for section in ['drugs', 'medical_procedures', 'lab_tests']:
+                    if section in claim_data and isinstance(claim_data[section], list):
+                        enriched = []
+                        for item in claim_data[section]:
+                            code = item['code'] if isinstance(item, dict) else item
+                            details = find_code_details(cursor, code, exclude_tables={'claims', 'services'})
+                            enriched.append({
+                                "code": code,
+                                "details": {k: v for k, v in details.items() if k != 'created_at'} if details else "Not covered by NHIS"
+                            })
+                        claim_data[section] = enriched
 
-                # Enrich lab tests with service details
-                if 'lab_tests' in claim_data_for_processing and isinstance(claim_data_for_processing['lab_tests'], list):
-                    enriched_tests = []
-                    for test_code in claim_data_for_processing['lab_tests']:
-                        cursor.execute("""
-                            SELECT * FROM service_tariffs WHERE code = %s
-                        """, (test_code,))
-                        test_details = cursor.fetchone()
-                        if test_details:
-                            enriched_tests.append({k: v for k, v in test_details.items() if k != 'created_at'})
-                        else:
-                            enriched_tests.append({"code": test_code, "details": "Not covered by NHIS"})
-                    claim_data_for_processing['lab_tests'] = enriched_tests
+                print("Enriched claim data:")
+                print(json.dumps(claim_data, indent=2, default=str))
 
-                print("Enriched claim data (excluding created_at):")
-                print(json.dumps(claim_data_for_processing, indent=2, default=str))
-                
-                # Send to ChatGPT for assessment and wait for response
-                gpt_response = send_to_chatgpt(claim_data_for_processing)
-                
-                # Only proceed if we got a valid response
-                if gpt_response and 'status' in gpt_response:
-                    # Update the database with the response
+                gpt_response = send_to_chatgpt(claim_data)
+                if gpt_response and 'claim_status' in gpt_response:
                     update_claim_status(conn, claim_encounter_token, gpt_response)
-                    
                     print("\nClaim processed successfully:")
                     print(json.dumps(gpt_response, indent=2))
                 else:
@@ -107,71 +85,68 @@ def process_pending_claims():
 
     except Exception as e:
         print(json.dumps({"error": str(e)}, indent=2))
+
 def send_to_chatgpt(claim_data):
-    """
-    Send the claim data to ChatGPT and get a standardized response back.
-    """
     try:
-        # Create system message to enforce standardized response format
         system_message = """
-        You are a medical insurance claim processor. Analyze the provided claim data and return a JSON response with exactly these fields:
-        1. status: Must be one of "Approved", "Flagged", or "Rejected"
-        2. final_payout: Numerical value representing the approved payout amount.
-        3. reason: Detailed explanation for your decision also state the drugs or medical treatments that arent covered by nhis.
-        
-        Base your decision on factors such as:
-        - Whether the procedures and medications are appropriate for the diagnosis
-        - Whether the charges appear reasonable
-        - Any potential fraud indicators or policy violations
-        - Whether all required documentation is present
-        
-        Your response MUST be a valid JSON object with only these three fields and nothing else.
-        """
-        
-        # Convert claim data to string if needed
-        claim_json = json.dumps(claim_data) if not isinstance(claim_data, str) else claim_data
-        
-        # Send to ChatGPT API
-        response = openai.chat.completions.create(
-            model="gpt-4-turbo",  # Or whichever model you prefer
+You are an NHIS claims processing assistant. Follow this strict 6-step validation policy to evaluate a medical claim:
+
+Step 0: Check if diagnosis exists in the STG database.
+Step 1: Validate that treatment and medications match the approved diagnosis-treatment pairs.
+Step 2: Confirm that dosage, frequency, and duration are within STG limits.
+Step 3: If overdose detected, compute approved quantity and flag excess.
+Step 4: Sum up treatment, lab, and procedure costs.
+Step 5: Compute approved total and flagged excess.
+Step 6: Assign final decision:
+  - "APPROVED" if all is within limits.
+  - "REJECTED" if diagnosis/treatment mismatch or dosage is missing/invalid.
+  - "ADJUSTMENT REQUIRED" if overdose is detected.
+
+Return ONLY the following JSON object:
+
+{
+  "claim_status": "APPROVED | REJECTED | ADJUSTMENT REQUIRED",
+  "approved_total": number,
+  "flagged_excess": number,
+  "reason": "Explain the reason for the decision and any uncovered items."
+}
+
+DO NOT include markdown, text, or headings. JSON object only.
+"""
+
+        user_message = json.dumps(claim_data)
+
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
             messages=[
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": f"Please analyze this medical claim:\n{claim_json}"}
+                {"role": "system", "content": system_message.strip()},
+                {"role": "user", "content": user_message}
             ],
-            response_format={"type": "json_object"}
+            temperature=0.2
         )
-        
-        # Parse the response
-        response_content = response.choices[0].message.content
-        standardized_response = json.loads(response_content)
-        
-        # Validate response format
-        required_keys = ["status", "final_payout", "reason"]
-        valid_statuses = ["Approved", "Flagged", "Rejected"]
-        
-        for key in required_keys:
-            if key not in standardized_response:
-                raise ValueError(f"Response missing required field: {key}")
-        
-        if standardized_response["status"] not in valid_statuses:
-            raise ValueError(f"Invalid status value. Must be one of: {valid_statuses}")
-        
-        return standardized_response
-        
+
+        content = response['choices'][0]['message']['content'].strip()
+
+        if content.startswith("```json"):
+            content = content.replace("```json", "").replace("```", "").strip()
+
+        parsed = json.loads(content)
+
+        for field in ["claim_status", "approved_total", "flagged_excess", "reason"]:
+            if field not in parsed:
+                raise ValueError(f"Missing field: {field}")
+        return parsed
+
     except Exception as e:
-        print(f"Error sending to ChatGPT: {str(e)}")
-        # Return a fallback response if there's an error
+        print(f"ChatGPT JSON parsing error: {str(e)}")
         return {
-            "status": "Flagged",
-            "final_payout": 0,
-            "reason": f"Error processing claim with AI: {str(e)}. Manual review required."
+            "claim_status": "ADJUSTMENT REQUIRED",
+            "approved_total": 0,
+            "flagged_excess": 0,
+            "reason": f"Error processing claim: {str(e)}. Manual review required."
         }
 
-def update_claim_status(conn, claim_encounter_token, gpt_response):
-    """
-    Update the claim in the database with the assessment from ChatGPT.
-    Maps the standardized response fields to the correct database column names.
-    """
+def update_claim_status(conn, encounter_token, response):
     try:
         with conn.cursor() as cursor:
             cursor.execute("""
@@ -179,25 +154,24 @@ def update_claim_status(conn, claim_encounter_token, gpt_response):
                 SET 
                     status = %s,
                     total_payout = %s,
+                    excess_amount = %s,
                     reason = %s
                 WHERE encounter_token = %s
             """, (
-                gpt_response["status"].lower(),  # Convert to lowercase to match your schema
-                gpt_response["final_payout"],
-                gpt_response["reason"],
-                claim_encounter_token
+                response["claim_status"].lower(),
+                response["approved_total"],
+                response["flagged_excess"],
+                response["reason"],
+                encounter_token
             ))
-            
             conn.commit()
-            print(f"Successfully updated claim with encounter_token {claim_encounter_token} status to {gpt_response['status']}")
-            
+            print(f"Updated claim {encounter_token} → {response['claim_status']}")
     except Exception as e:
         conn.rollback()
-        print(f"Error updating claim status: {str(e)}")
-
+        print(f"DB Update failed: {str(e)}")
 
 if __name__ == "__main__":
-    while True:  # Infinite loop to keep the script running
-        process_pending_claims()  # Process one claim at a time
+    while True:
+        process_pending_claims()
         print("Waiting for new pending claims...")
-        time.sleep(0)  # Wait for 10 seconds before checking again
+        time.sleep(10)
