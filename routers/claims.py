@@ -165,6 +165,7 @@ def submit_claim(
             type_of_attendance=claim_data.type_of_attendance,
             pharmacy=claim_data.pharmacy or False,
             legend=legend,
+            
         )
 
         db.add(new_claim)
@@ -287,6 +288,7 @@ def get_claims_by_status(db: Session, status: str):
             "lab_tests_total": claim.lab_tests_total,
             "drugs_total": claim.drugs_total,
             "expected_payout": claim.expected_payout,
+            "age": claim.age
         }
         results.append(result)
     return results

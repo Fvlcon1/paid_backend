@@ -15,7 +15,6 @@ from typing import Dict, Any, Optional, Union
 from websocket_manager import manager
 
 
-OPENAI_API_KEY = ""
 DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-ancient-smoke-a4h6qbnr-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 OPENAI_ASSISTANT_ID = "asst_fbnh9vuQ3TsMkPxtWpiFpjaE"
 POLL_INTERVAL = 10
@@ -162,7 +161,7 @@ class ClaimsProcessor:
                 conn.commit()
                 logger.info(f"Updated claim {encounter_token} → {response['claim_status']}")
                 try:
-                    await anyio.to_thread.run_sync(manager.send_notification, "2", response["claim_status"])
+                    anyio.from_thread.run(manager.send_notification, "2", response["claim_status"])
                 except Exception as notify_error:
                     logger.warning(f"WebSocket notify failed: {notify_error}")
                 return True
