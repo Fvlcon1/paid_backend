@@ -9,15 +9,9 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
     try:
         while True:
             message = await websocket.receive_text()
-
             if message.startswith("reset_"):
                 status = message.replace("reset_", "")
                 await manager.reset_counter(user_id, status=status)
-
-<<<<<<< HEAD
-            
-=======
-            # Optionally support "ping", "get_status", etc. in future
->>>>>>> 50ffd12 (test of fate 💀)
     except WebSocketDisconnect:
         manager.disconnect(user_id)
+
