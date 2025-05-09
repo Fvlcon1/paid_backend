@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    #log {
+      margin-top: 1rem;
+      background: #f0f0f0;
+      padding: 1rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>WebSocket Notification Test</h2>
+  <button onclick="sendReset()">Reset Pending</button>
+
+  <div id="log"></div>
+
+  <script>
+    let ws;
+    
+    function connectWebSocket() {
+      ws = new WebSocket("ws://localhost:8000/ws/notifications/2");
+    
+      ws.onopen = () => {
+        console.log("✅ WebSocket connected.");
+        document.getElementById("status").innerText = "✅ WebSocket connected.";
+      };
+    
+      ws.onmessage = (event) => {
+        console.log(event.data);
+      };
+    
+      ws.onclose = () => {
+        console.log("🔌 WebSocket disconnected.");
+      };
+    
+      ws.onerror = (err) => {
+        console.error("❌ WebSocket error:", err);
+      };
+    }
+    
+    function sendReset() {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send("reset_pending");
+      } else {
+        console.warn("WebSocket not open yet.");
+      }
+    }
+    
+    window.onload = connectWebSocket;
+    </script>
+    
+</body>
+</html>

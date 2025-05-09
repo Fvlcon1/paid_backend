@@ -1,0 +1,56 @@
+{
+    "diagnosis_icd10": "bacterial_gastroenteritis",
+    "description": "Bacterial gastroenteritis",
+    "treatments": [
+      {
+        "min_age_months": 144,
+        "drug_icd10": "CIPROFTA2",
+        "frequency" : 12,
+        "duration" : 5,
+        "pricing" : 0.42,
+        "prescribing_level" : "M"
+      },
+      {
+        "min_age_months": 0,
+        "max_age_months": 144,
+        "drug_icd10": "CIPROFTA1",
+        "frequency" : 12,
+        "duration" : 5,
+        "pricing" : 0.5,
+        "prescribing_level" : "M"
+      },
+      {
+        "min_age_months": 144,
+        "drug_icd10": "CEFUROIN1",
+        "frequency" : 8,
+        "pricing" : 6.74,
+        "prescribing_level" : "B2"
+      },
+      {
+        "min_age_months": 0,
+        "max_age_months": 144,
+        "drug_icd10": "CEFUROIN1",
+        "frequency" : 12,
+        "pricing" : 6.74,
+        "prescribing_level" : "B2"
+      },
+      {
+        "min_age_months": 144,
+        "drug_icd10": "CEFUROTA2",
+        "frequency" : 12,
+        "pricing" : 1.6,
+        "duration" : 7,
+        "prescribing_level" : "C"
+      },
+      {
+        "min_age_months": 3,
+        "max_age_months": 24,
+        "drug_icd10": "CEFUROTA1",
+        "frequency" : 12,
+        "pricing" : 1.29,
+        "duration" : 7,
+        "prescribing_level" : "B2"
+      }
+    ]
+  }
+  

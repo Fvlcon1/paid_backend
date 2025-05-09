@@ -1,0 +1,86 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Environment
+.env
+.env.*
+venv/
+.venv/
+ENV/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+.cache
+pytest_cache/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Pyre type checker
+.pyre/
+
+# VS Code settings
+.vscode/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pyright
+pyrightconfig.json
+
+# Pydantic generated files
+*.schema.json
+
+# FastAPI static/docs builds (if applicable)
+static/
+dist/
+build/
+docs/_build/
+
+# SQLite DBs
+*.db
+*.sqlite3
+
+# Log files
+*.log
+
+# IDE files (optional but helpful)
+.idea/
+*.swp
+*.swo
+
+# Docker stuff (optional)
+*.pid
+*.tar
+
+# __init__.py generated cache
+*.pyc
+
+# Optional: ignore migrations if auto-generated and not managed
+# migrations/
+config.sample.env
+.env
+config.sample.env

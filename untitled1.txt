@@ -1,0 +1,37 @@
+# FastAPI and web server
+fastapi==0.103.1
+uvicorn[standard]==0.23.2
+python-multipart==0.0.6
+jinja2==3.1.2
+
+# Database
+sqlalchemy==2.0.20
+psycopg2-binary==2.9.7  # PostgreSQL adapter (or use another DB adapter as needed)
+alembic==1.12.0  # For database migrations
+
+# Authentication
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0  # For JWT
+pyjwt==2.8.0
+python-dotenv==1.0.0
+
+# CORS support
+starlette==0.27.0
+
+# Image processing (for face comparison)
+pillow==10.0.0
+face-recognition==1.3.0  # Assuming this is used for face comparison
+numpy==1.25.2  # Required by face-recognition
+
+# Request handling
+httpx==0.24.1  # For making HTTP requests
+requests==2.31.0
+
+# Pydantic for data validation
+pydantic==2.3.0
+pydantic-settings==2.0.3
+
+# Development tools
+pytest==7.4.0  # For testing
+black==23.7.0  # Code formatting
+flake8==6.1.0  # Linting

@@ -1,0 +1,1 @@
+from src.expert_system.models import Diagnosis, DiagnosisTreatment

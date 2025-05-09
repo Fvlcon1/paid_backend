@@ -1,0 +1,17 @@
+__pycache__
+*.pyc
+*.pyo
+.git
+.vscode
+node_modules
+*.db
+
+# Environment
+.env
+.env.*
+venv/
+.venv/
+ENV/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
