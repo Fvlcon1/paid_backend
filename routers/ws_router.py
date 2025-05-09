@@ -1,3 +1,5 @@
+
+
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from websocket_manager import manager  
 
@@ -9,9 +11,8 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
     try:
         while True:
             message = await websocket.receive_text()
-            if message.startswith("reset_"):
-                status = message.replace("reset_", "")
-                await manager.reset_counter(user_id, status=status)
+            if message == "reset_pending":
+                await manager.reset_counter(user_id)
     except WebSocketDisconnect:
         manager.disconnect(user_id)
 
