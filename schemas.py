@@ -30,11 +30,11 @@ class MemberResponse(BaseModel):
     profile_image_url: Optional[str] = None
 
     class Config:
-        from_attributes = True  # or orm_mode = True if you're using Pydantic v1
+        from_attributes = True  
 
 
 class EmailTwoFactorSetup(BaseModel):
-    email: EmailStr  # The email address to which the OTP will be sent
+    email: EmailStr  
     email_otp_backup_codes: Optional[List[str]] = Field(default=None)  # Backup codes for 2FA
 
 class EmailTwoFactorVerification(BaseModel):
@@ -287,11 +287,12 @@ class ICD10Response(BaseModel):
     gdrg_code: str | None
     gdrg_name: str | None
     level_of_care: List[str] | None
+    tariff: float | None
     created_at: datetime
-
 
     class Config:
         orm_mode = True
+        from_attributes = True  
 
 
 class ZoomCodeResponse(BaseModel):
@@ -405,13 +406,14 @@ class ClaimResponse(BaseModel):
     drugs_total: Optional[float] = None
     expectedPayout: float = Field(..., alias="expected_payout")
     
+    
 
 
 
 
 
 class ClaimDraftBase(BaseModel):
-    encounter_token: str  # Required
+    encounter_token: str  
 
     diagnosis: Optional[List[DiagnosisItem]] = None
     service_type: Optional[List[str]] = None

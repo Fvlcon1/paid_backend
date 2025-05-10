@@ -14,7 +14,6 @@ from typing import Dict, Any, Optional, Union
 
 from websocket_manager import manager
 
-
 DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-ancient-smoke-a4h6qbnr-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 OPENAI_ASSISTANT_ID = "asst_fbnh9vuQ3TsMkPxtWpiFpjaE"
 POLL_INTERVAL = 10
@@ -27,6 +26,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+CALCULATION_REMINDER = """
+IMPORTANT: You must calculate the approved_total and flagged_excess values yourself. 
+DO NOT use the submitted total_payout. Calculate based ONLY on the tariff values in the legend field.
+Show your calculations in the reason field.
+"""
 
 class ClaimsProcessor:
     def __init__(self):
@@ -61,23 +65,46 @@ class ClaimsProcessor:
 
     def _enrich_claim(self, claim: Dict[str, Any]) -> Dict[str, Any]:
         enriched_claim = {k: v for k, v in claim.items() if k != 'created_at'}
+
+        if 'total_payout' in enriched_claim:
+            logger.info(f"Removing total_payout field from claim {enriched_claim.get('encounter_token', 'unknown')}")
+            del enriched_claim['total_payout']
+
         for k, v in enriched_claim.items():
             if isinstance(v, datetime):
                 enriched_claim[k] = v.isoformat()
+
         for section in ['drugs', 'medical_procedures', 'lab_tests']:
             enriched_claim[section] = self._safe_json_load(enriched_claim.get(section, []))
+
         if 'legend' in enriched_claim:
-            enriched_claim['legend'] = self._safe_json_load(enriched_claim['legend'])
+            if isinstance(enriched_claim['legend'], str):
+                try:
+                    enriched_claim['legend'] = json.loads(enriched_claim['legend'])
+                except json.JSONDecodeError:
+                    enriched_claim['legend'] = {}
+            elif not isinstance(enriched_claim['legend'], dict):
+                enriched_claim['legend'] = {}
+
         return enriched_claim
 
     def _send_to_assistant(self, claim_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         try:
             thread = openai.beta.threads.create()
+
+            message_content = (
+                f"{CALCULATION_REMINDER}\n\n"
+                f"Here is the claim data to process:\n{json.dumps(claim_data)}"
+            )
+
+            logger.info("Sending claim to assistant:\n" + json.dumps(claim_data, indent=2))
+
             openai.beta.threads.messages.create(
                 thread_id=thread.id,
                 role="user",
-                content=json.dumps(claim_data)
+                content=message_content
             )
+
             run = openai.beta.threads.runs.create(
                 assistant_id=OPENAI_ASSISTANT_ID,
                 thread_id=thread.id
@@ -110,7 +137,7 @@ class ClaimsProcessor:
                 response_text = response_text.replace("```json", "").replace("```", "").strip()
 
             parsed = json.loads(response_text)
-            return self._validate_assistant_response(parsed)
+            return self._validate_assistant_response(parsed, claim_data)
 
         except OpenAIError as e:
             logger.error(f"OpenAI API error: {str(e)}")
@@ -122,22 +149,33 @@ class ClaimsProcessor:
             logger.error(f"Unexpected error in send_to_assistant: {str(e)}")
             return None
 
-    def _validate_assistant_response(self, response: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def _validate_assistant_response(self, response: Dict[str, Any], claim_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         required_fields = ["claim_status", "approved_total", "flagged_excess", "reason"]
         valid_statuses = {"approved", "rejected", "flagged"}
+
         for field in required_fields:
             if field not in response:
                 logger.error(f"Assistant response missing required field: {field}")
                 return None
+
         parsed_status = str(response["claim_status"]).strip().lower()
         if parsed_status not in valid_statuses:
             logger.error(f"Invalid claim_status: '{parsed_status}' - must be one of {valid_statuses}")
             return None
+
         try:
             response["approved_total"] = float(response["approved_total"])
+            response["flagged_excess"] = float(response["flagged_excess"])
         except (ValueError, TypeError):
-            logger.error(f"Invalid approved_total: {response['approved_total']} - must be a number")
+            logger.error(f"Invalid numeric values: approved_total={response['approved_total']}, flagged_excess={response['flagged_excess']}")
             return None
+
+        if 'total_payout' in claim_data and abs(float(claim_data['total_payout']) - response["approved_total"]) < 0.01:
+            logger.warning(f"SUSPICIOUS: Calculated amount matches original total_payout. Possible calculation issue.")
+
+        if not any(term in response["reason"].lower() for term in ['calculated', 'calculation', 'sum', 'total of']):
+            logger.warning(f"SUSPICIOUS: Reason doesn't appear to contain calculation details")
+
         response["claim_status"] = parsed_status
         return response
 
@@ -159,9 +197,9 @@ class ClaimsProcessor:
                     encounter_token
                 ))
                 conn.commit()
-                logger.info(f"Updated claim {encounter_token} → {response['claim_status']}")
+                logger.info(f"Updated claim {encounter_token} → {response['claim_status']} with calculated amount {response['approved_total']}")
                 try:
-                    anyio.from_thread.run(manager.send_notification, "2", response["claim_status"])
+                    anyio.run(manager.send_notification, "2", response["claim_status"])
                 except Exception as notify_error:
                     logger.warning(f"WebSocket notify failed: {notify_error}")
                 return True

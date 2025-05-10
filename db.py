@@ -67,11 +67,11 @@ class Claim(Base):
 
 
 
-    # Relationships
+    
     verification_token = relationship("VerificationToken", backref="claims")
     user = relationship("User", backref="submitted_claims")
 
-    # Indexes
+    
     __table_args__ = (
         Index('idx_claim_encounter', 'encounter_token'),
         Index('idx_claim_created_date', 'created_at'),
@@ -152,6 +152,7 @@ class ICD10Code(Base):
     gdrg_name = Column(String, nullable=True)
     level_of_care = Column(JSON, nullable=True)  
     created_at = Column(TIMESTAMP(timezone=True), nullable=False)
+    tariff = Column(Numeric, nullable=True)
 
 class Investigation(Base):
     __tablename__ = "investigations"
