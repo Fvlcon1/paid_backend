@@ -412,7 +412,9 @@ class ClaimResponse(BaseModel):
     
 
 
-
+class ClaimStatusUpdate(BaseModel):
+    status: str
+    reason: Optional[str] = None
 
 
 class ClaimDraftBase(BaseModel):
@@ -430,7 +432,7 @@ class ClaimDraftBase(BaseModel):
     specialties: Optional[List[str]] = None
     type_of_attendance: Optional[str] = None
     pharmacy: Optional[bool] = False
-    
+
     diagnosis_total: Optional[float] = None
     expectedPayout: Optional[float] = None
     medical_procedures_total: Optional[float] = None

@@ -221,6 +221,39 @@ def get_claims(
             status_code=500, detail="Internal server error during claim retrieval"
         )
 
+
+from pydantic import BaseModel
+
+class ClaimStatusUpdate(BaseModel):
+    status: str
+    reason: Optional[str] = None
+
+@router.patch("/update-status/{encounter_token}", response_model=ClaimResponse)
+def update_claim_status_public(
+    encounter_token: str,
+    update_data: ClaimStatusUpdate,
+    db: Session = Depends(get_db),
+):
+    try:
+        claim = db.query(Claim).filter(Claim.encounter_token == encounter_token).first()
+
+        if not claim:
+            raise HTTPException(status_code=404, detail="Claim not found")
+
+        claim.status = update_data.status
+        claim.reason = update_data.reason
+
+        db.commit()
+        db.refresh(claim)
+
+        return claim
+
+    except Exception as e:
+        logger.error(f"Error updating claim status: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Error updating claim status")
+
+
+
 @router.get("/approved", response_model=List[ClaimResponse])
 def get_approved_claims(db: Session = Depends(get_db)):
     anyio.from_thread.run(manager.reset_counter, "2", "approved")
