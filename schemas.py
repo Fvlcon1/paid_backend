@@ -326,6 +326,7 @@ class DiagnosisItem(BaseModel):
     description: str
     ICD10: str
     primary: Optional[bool] = False
+    tariff: float
 
 
 class Drug(BaseModel):
@@ -369,6 +370,7 @@ class ClaimCreate(BaseModel):
     type_of_attendance: Optional[str] = None
     pharmacy: bool = False  
     expectedPayout: float = Field(..., alias="expected_payout")
+    diagnosis_total: Optional[float] = None
     medical_procedures_total: Optional[float] = None
     lab_tests_total: Optional[float] = None
     drugs_total: Optional[float] = None
@@ -400,7 +402,8 @@ class ClaimResponse(BaseModel):
     service_type_2: Optional[str] = None
     specialties: Optional[List[str]] = None
     type_of_attendance: Optional[str] = None
-    pharmacy: bool = False  
+    pharmacy: bool = False
+    diagnosis_total: Optional[float] = None
     medical_procedures_total: Optional[float] = None
     lab_tests_total: Optional[float] = None
     drugs_total: Optional[float] = None

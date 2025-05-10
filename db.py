@@ -59,6 +59,7 @@ class Claim(Base):
     type_of_attendance = Column(String, nullable=True)
     pharmacy = Column(Boolean, default=False, nullable=False)
 
+    diagnosis_total = Column(Float, nullable=False)
     medical_procedures_total = Column(Float, nullable=True)
     lab_tests_total = Column(Float, nullable=True)
     drugs_total = Column(Float, nullable=True)
