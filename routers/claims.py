@@ -79,7 +79,6 @@ def submit_claim(
                 ).fetchone()
                 tariff = float(tariff_row[0]) if tariff_row and tariff_row[0] is not None else None
 
-
             diagnosis_legend.append({
                 "code": diag.ICD10,
                 "tariff": tariff
@@ -166,7 +165,6 @@ def submit_claim(
             type_of_attendance=claim_data.type_of_attendance,
             pharmacy=claim_data.pharmacy or False,
             legend=legend,
-            
         )
 
         db.add(new_claim)
@@ -176,10 +174,22 @@ def submit_claim(
         anyio.from_thread.run(manager.send_notification, "2")
         return new_claim
 
-    except Exception:
+    except Exception as e:
         db.rollback()
-        logger.error("Error submitting claim:\n" + traceback.format_exc())
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        error_trace = traceback.format_exc()
+        logger.error("Error submitting claim:\n" + error_trace)
+
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "error": str(e),
+                "traceback": error_trace
+            }
+        )
+
+
+
+
 
 @router.get("/", response_model=List[ClaimResponse])
 def get_claims(
