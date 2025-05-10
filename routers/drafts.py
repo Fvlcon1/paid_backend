@@ -52,7 +52,7 @@ def create_draft(
         draft = db.query(ClaimDraft).filter(ClaimDraft.encounter_token == draft_data.encounter_token).first()
 
         if draft:
-            # Update existing draft
+            
             draft.diagnosis = safe_model_dump(draft_data.diagnosis)
             draft.drugs = safe_model_dump(draft_data.drugs)
             draft.medical_procedures = safe_model_dump(draft_data.medical_procedures)
@@ -69,6 +69,7 @@ def create_draft(
             draft.type_of_attendance = draft_data.type_of_attendance
             draft.pharmacy = draft_data.pharmacy
             draft.expected_payout = draft_data.expectedPayout
+            draft.diagnosis_total = draft_data.diagnosis_total
             draft.medical_procedures_total = draft_data.medical_procedures_total
             draft.lab_tests_total = draft_data.lab_tests_total
             draft.drugs_total = draft_data.drugs_total
@@ -105,6 +106,7 @@ def create_draft(
             type_of_attendance=draft_data.type_of_attendance,
             pharmacy=draft_data.pharmacy,
             expected_payout=draft_data.expectedPayout,
+            diagnosis_total=draft_data.diagnosis_total,
             medical_procedures_total=draft_data.medical_procedures_total,
             lab_tests_total=draft_data.lab_tests_total,
             drugs_total=draft_data.drugs_total
