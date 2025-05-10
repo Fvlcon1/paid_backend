@@ -12,6 +12,7 @@ from security import decode_access_token
 from dependencies import get_current_user, get_db
 import traceback
 from decimal import Decimal
+import os
 
 router = APIRouter(prefix="/claims", tags=["Claims"])
 logger = logging.getLogger(__name__)
@@ -214,6 +215,7 @@ def get_claims(
         claims = (
             query.order_by(Claim.created_at.desc()).offset(offset).limit(limit).all()
         )
+        print("env example", os.getenv("ex"))
         return claims
     except Exception as e:
         logger.error(f"Error retrieving claims: {str(e)}", exc_info=True)

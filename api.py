@@ -45,6 +45,7 @@ Base.metadata.create_all(bind=engine)
 
 
 load_dotenv()
+print("env example", os.getenv("ex"))
 
 AWS_ACCESS_KEY = "AKIAU6GD2ASBDQBT4G6T"
 AWS_SECRET_KEY = "23Y84MQkgGLI1+Ia4kqNI7L+hYUGMALhCkYOjaB4"
