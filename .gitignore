@@ -84,3 +84,5 @@ docs/_build/
 config.sample.env
 .env
 config.sample.env
+.env
+.env
