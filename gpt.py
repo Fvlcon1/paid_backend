@@ -14,7 +14,6 @@ from typing import Dict, Any, Optional, Union
 
 from websocket_manager import manager
 
-DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-ancient-smoke-a4h6qbnr-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 OPENAI_ASSISTANT_ID = "asst_fbnh9vuQ3TsMkPxtWpiFpjaE"
 POLL_INTERVAL = 10
 
