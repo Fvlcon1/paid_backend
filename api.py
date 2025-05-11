@@ -21,7 +21,7 @@ from uuid import uuid4, UUID
 import logging
 import asyncio
 import string
-import subprocess
+
 import boto3
 import os
 from db import Base, engine
@@ -141,13 +141,7 @@ app.include_router(ws_router)
 app.include_router(expert_system_controller.router)
 
 
-@app.on_event("startup")
-async def start_gpt_process():
-    try:
-        subprocess.Popen(["python", "gpt.py"])
-        logger.info("gpt.py started successfully.")
-    except Exception as e:
-        logger.error(f" Failed to start gpt.py: {e}")
+
 
 def create_health_check(app: FastAPI):
     @app.get("/health")
