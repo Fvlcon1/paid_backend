@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Set Resend API key
-resend.api_key = "re_SQ1dsFZy_C1kNPfFvNX5zs7Mzr2JW2qjj"  # Replace with your actual API key
+resend.api_key = "re_SQ1dsFZy_C1kNPfFvNX5zs7Mzr2JW2qjj"  
 
 def generate_otp():
     return str(random.randint(100000, 999999))
@@ -17,8 +17,8 @@ def generate_otp():
 def send_otp_email(email: str, otp: str):
     try:
         response = resend.Emails.send({
-            "from": "Acme <noreply@fvlcon.org>",  # Use Resend's verified domain
-            "to": email,  # Pass recipient email correctly
+            "from": "Acme <noreply@fvlcon.org>",  
+            "to": email,  
             "subject": "Your 2FA Code",
             "html": f"<p>Your 2FA code is: <strong>{otp}</strong></p>"
         })
