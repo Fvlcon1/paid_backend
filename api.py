@@ -39,8 +39,7 @@ from qr import generate_qr_code_base64
 from routers import icd
 from routers import investigations, dent, med, paediatrics, opd, ent
 from routers import zoom
-from routers import ws_trigger
-
+from routers.ws_trigger import router as ws_trigger_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -138,7 +137,7 @@ app.include_router(ent.router)
 app.include_router(paediatrics.router)
 app.include_router(opd.router)
 app.include_router(ws_router)
-app.include_router(ws_trigger.router)
+app.include_router(ws_trigger_router)
 
 app.include_router(expert_system_controller.router)
 
