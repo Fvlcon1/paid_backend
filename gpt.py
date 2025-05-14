@@ -12,10 +12,10 @@ from dotenv import load_dotenv
 import openai
 from openai import OpenAIError
 
-# Load env variables
+
 load_dotenv()
 
-# Config
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-ancient-smoke-a4h6qbnr-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 
@@ -24,7 +24,7 @@ POLL_INTERVAL = 10
 
 openai.api_key = OPENAI_API_KEY
 
-# Logger setup
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -37,7 +37,7 @@ DO NOT use the submitted total_payout. Calculate based ONLY on the tariff values
 Show your calculations in the reason field.
 """
 
-# ✅ WebSocket Notification Sender
+
 def send_ws_notification(user_id: str, status: str):   
     try:
         response = requests.post("https://api-paiv.blvcksapphire.com/ws/trigger", json={
@@ -268,7 +268,6 @@ class ClaimsProcessor:
         logger.info("Claims processor shutdown complete")
 
 
-# 🔁 Entry point
 if __name__ == "__main__":
     processor = ClaimsProcessor()
     processor.run()

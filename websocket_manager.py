@@ -28,7 +28,7 @@ class WebSocketManager:
             connections.remove(websocket)
         if not connections:
             self.active_connections.pop(user_id, None)
-            self.pending_counters.pop(user_id, None)  # Optional: remove if no one is listening
+            self.pending_counters.pop(user_id, None)  
 
     async def send_notification(self, user_id: str, status: str = "pending"):
         """Send notification to clients when claim status changes."""
@@ -41,25 +41,25 @@ class WebSocketManager:
             "flagged": 0
         })
 
-        # When a pending claim gets approved/rejected/flagged, decrement pending counter
+       
         if status != "pending" and self.pending_counters[user_id]["pending"] > 0:
             self.pending_counters[user_id]["pending"] -= 1
 
-        # Increment the appropriate status counter
+       
         self.pending_counters[user_id][status] += 1
         
-        # Log the current counters for debugging
+        
         logger.info(f"Updated counters for user {user_id}: {self.pending_counters[user_id]}")
 
-        # Send updated counters to all connected clients for this user
+       
         await self._broadcast_to_user(user_id, self.pending_counters[user_id])
 
     async def reset_counter(self, user_id: str, status: str = "pending"):
-        """Reset counter for a specific status."""
+        
         logger.info(f"Resetting counter for user {user_id}, status {status}")
         
         self.pending_counters.setdefault(user_id, {
-            "pending": 10,
+            "pending": 0,
             "approved": 0,
             "rejected": 0,
             "flagged": 0
@@ -68,7 +68,7 @@ class WebSocketManager:
         await self._broadcast_to_user(user_id, self.pending_counters[user_id])
 
     async def _broadcast_to_user(self, user_id: str, data: dict):
-        """Helper method to broadcast to all websockets for a user."""
+       
         message = json.dumps(data)
         logger.info(f"Broadcasting to user {user_id}: {message}")
         
@@ -78,7 +78,7 @@ class WebSocketManager:
                 logger.info(f"Successfully sent to a connection for user {user_id}")
             except Exception as e:
                 logger.error(f"Error sending to websocket: {str(e)}")
-                continue  # Continue with other connections
+                continue 
 
 manager = WebSocketManager()
 
