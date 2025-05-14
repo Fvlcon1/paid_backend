@@ -417,6 +417,13 @@ class ClaimStatusUpdate(BaseModel):
     reason: Optional[str] = None
 
 
+
+class PasswordResetRequest(BaseModel):
+    email: str
+    new_password: str
+
+
+
 class ClaimDraftBase(BaseModel):
     encounter_token: str  
 

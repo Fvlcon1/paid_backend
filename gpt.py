@@ -1,31 +1,30 @@
 import json
 import os
-import sys
 import signal
-import psycopg2
-from datetime import datetime
-import openai
-from openai import OpenAIError
-import anyio
 import time
 import logging
+import requests
+import psycopg2
 import psycopg2.extras
+from datetime import datetime
 from typing import Dict, Any, Optional, Union
 from dotenv import load_dotenv
+import openai
+from openai import OpenAIError
 
-from websocket_manager import manager
+# Load env variables
+load_dotenv()
 
-
-
-
-
+# Config
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 DATABASE_URL = "postgresql://neondb_owner:npg_Emq9gohbK8se@ep-ancient-smoke-a4h6qbnr-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+
 OPENAI_ASSISTANT_ID = "asst_fbnh9vuQ3TsMkPxtWpiFpjaE"
 POLL_INTERVAL = 10
 
 openai.api_key = OPENAI_API_KEY
 
+# Logger setup
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -37,6 +36,18 @@ IMPORTANT: You must calculate the approved_total and flagged_excess values yours
 DO NOT use the submitted total_payout. Calculate based ONLY on the tariff values in the legend field.
 Show your calculations in the reason field.
 """
+
+# ✅ WebSocket Notification Sender
+def send_ws_notification(user_id: str, status: str):   
+    try:
+        response = requests.post("https://api-paiv.blvcksapphire.com/ws/trigger", json={
+            "user_id": user_id,
+            "status": status
+        })  
+        logger.info(f"WebSocket notification sent for user {user_id} with status: {status}. Response: {response.status_code}")
+    except Exception as notify_error:
+        logger.error(f"WebSocket notify failed: {notify_error}")
+
 
 class ClaimsProcessor:
     def __init__(self):
@@ -177,10 +188,10 @@ class ClaimsProcessor:
             return None
 
         if 'total_payout' in claim_data and abs(float(claim_data['total_payout']) - response["approved_total"]) < 0.01:
-            logger.warning(f"SUSPICIOUS: Calculated amount matches original total_payout. Possible calculation issue.")
+            logger.warning("SUSPICIOUS: Calculated amount matches original total_payout. Possible issue.")
 
         if not any(term in response["reason"].lower() for term in ['calculated', 'calculation', 'sum', 'total of']):
-            logger.warning(f"SUSPICIOUS: Reason doesn't appear to contain calculation details")
+            logger.warning("SUSPICIOUS: Reason doesn't include calculation detail")
 
         response["claim_status"] = parsed_status
         return response
@@ -203,12 +214,10 @@ class ClaimsProcessor:
                     encounter_token
                 ))
                 conn.commit()
-                logger.info(f"Updated claim {encounter_token} → {response['claim_status']} with calculated amount {response['approved_total']}")
-                try:
-                    anyio.run(manager.send_notification, "2", response["claim_status"])
-                except Exception as notify_error:
-                    logger.warning(f"WebSocket notify failed: {notify_error}")
-                return True
+                logger.info(f"Updated claim {encounter_token} → {response['claim_status']} with amount {response['approved_total']}")
+
+            send_ws_notification("2", response["claim_status"])
+            return True
         except psycopg2.Error as e:
             conn.rollback()
             logger.error(f"DB Update failed for claim {encounter_token}: {str(e)}")
@@ -234,26 +243,24 @@ class ClaimsProcessor:
                         if success:
                             logger.info(f"Claim {encounter_token} processed successfully")
                         else:
-                            logger.error(f"Failed to update claim {encounter_token} in database")
+                            logger.error(f"Failed to update claim {encounter_token}")
                     else:
-                        logger.warning(f"No valid response received for claim {encounter_token}")
-        except psycopg2.Error as e:
-            logger.error(f"Database error: {str(e)}")
+                        logger.warning(f"No valid response for claim {encounter_token}")
         except Exception as e:
-            logger.error(f"Unexpected error processing claims: {str(e)}")
+            logger.error(f"Error in process_pending_claims: {str(e)}")
 
     def run(self):
         logger.info("Claims processor starting...")
         while self.running:
             try:
                 self.process_pending_claims()
-                logger.info(f"Waiting {POLL_INTERVAL} seconds for new pending claims...")
+                logger.info(f"Waiting {POLL_INTERVAL} seconds for next check...")
                 for _ in range(POLL_INTERVAL):
                     if not self.running:
                         break
                     time.sleep(1)
             except Exception as e:
-                logger.error(f"Error in main processing loop: {str(e)}")
+                logger.error(f"Error in main loop: {str(e)}")
                 time.sleep(5)
         if self.db_conn and not self.db_conn.closed:
             self.db_conn.close()
@@ -261,6 +268,7 @@ class ClaimsProcessor:
         logger.info("Claims processor shutdown complete")
 
 
+# 🔁 Entry point
 if __name__ == "__main__":
     processor = ClaimsProcessor()
     processor.run()

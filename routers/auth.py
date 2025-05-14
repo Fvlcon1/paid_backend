@@ -5,7 +5,7 @@ from datetime import timedelta
 from typing import Dict
 import logging
 
-from schemas import UserCreate, UserLogin, UserResponse
+from schemas import UserCreate, UserLogin, UserResponse, PasswordResetRequest
 from db import SessionLocal, User
 from security import get_password_hash, verify_password, create_access_token
 
@@ -51,6 +51,10 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
         db.rollback()
         logger.error(f"Signup error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error during signup: {str(e)}")
+
+
+
+
 
 
 # --- Login Route ---
